@@ -15,10 +15,15 @@
     "prEditedNotification",
     "prIgnoreNotification"
   ],
-  "regexManagers": [
+  "customManagers": [
     {
-      "fileMatch": ["\\.container$"],
-      "matchStrings": ["Image=(?<depName>.*?):(?<currentValue>.*?)\\s"],
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/\\.container$/"
+      ],
+      "matchStrings": [
+        "Image=(?<depName>.*?):(?<currentValue>.*?)\\s"
+      ],
       "datasourceTemplate": "docker"
     }
   ],
