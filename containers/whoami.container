@@ -1,0 +1,16 @@
+[Unit]
+Description=Whoami test container
+After=network-online.target
+Wants=network-online.target
+
+[Container]
+Image=docker.io/traefik/whoami:latest
+PublishPort=8080:80
+AutoUpdate=registry
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target default.target
