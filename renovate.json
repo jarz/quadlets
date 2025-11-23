@@ -1,6 +1,38 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
+    "mergeConfidence:all-badges",
+    "config:best-practices",
+    "docker:enableMajor",
+    "docker:pinDigests",
+    "preview:dockerCompose",
+    ":dependencyDashboard",
+    ":semanticCommits"
+  ],
+  "dependencyDashboard": true,
+  "dependencyDashboardTitle": "Renovate Dashboard 🤖",
+  "suppressNotifications": [
+    "prEditedNotification",
+    "prIgnoreNotification"
+  ],
+  "regexManagers": [
+    {
+      "fileMatch": ["\\.container$"],
+      "matchStrings": ["Image=(?<depName>.*?):(?<currentValue>.*?)\\s"],
+      "datasourceTemplate": "docker"
+    }
+  ],
+  "packageRules": [
+    {
+      "description": [
+        "Use custom versioning for linuxserver images"
+      ],
+      "versioning": "regex:^(?:(?P<compatibility>.+)-)?v?(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)(?:\\.(?P<build>\\d+))?-?r?(?P<ls>ls\\d+)?$",
+      "matchPackageNames": [
+        "/^ghcr.io\\/linuxserver\\//",
+        "/^lscr.io\\/linuxserver\\//",
+        "/^linuxserver\\//"
+      ]
+    }
   ]
 }
