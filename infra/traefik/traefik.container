@@ -4,7 +4,7 @@ After=network-online.target
 Wants=network-online.target
 
 [Container]
-Image=docker.io/traefik/traefik:v3.3
+Image=docker.io/traefik/traefik:v3.6.2
 PublishPort=8080:80
 PublishPort=8443:443
 PublishPort=9090:8080
