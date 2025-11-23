@@ -1,0 +1,9 @@
+[Unit]
+Description=Pull quadlet git repo and update containers
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/.config/containers/systemd
+ExecStart=/usr/bin/git pull
+ExecStart=/usr/bin/systemctl --user daemon-reload
+ExecStart=/usr/bin/podman auto-update
