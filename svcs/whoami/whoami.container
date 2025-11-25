@@ -4,7 +4,7 @@ After=traefik.service
 Requires=traefik.service
 
 [Container]
-Image=docker.io/traefik/traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
+Image=docker.io/traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
 Network=traefik.network
 Label=traefik.enable=true
 Label=traefik.http.routers.whoami.rule=Host(`whoami-containers.jarz.casa`)
