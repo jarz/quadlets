@@ -11,10 +11,18 @@ PublishPort=8081:8080
 Network=traefik.network
 Volume=traefik.volume:/etc/traefik
 Volume=%h/traefik:/config:z
+Volume=/etc/letsencrypt:/letsencrypt:ro,z
+Volume=%h/traefik/dynamic:/etc/traefik/dynamic:ro,z
 AddCapability=NET_BIND_SERVICE
 Environment=TZ=America/Indiana/Indianapolis
 Label=traefik.enable=false
-Exec=--api.insecure=true --providers.file.directory=/config --entrypoints.web.address=:80 --entrypoints.websecure.address=:443
+Exec=--api.insecure=true \
+  --providers.file.directory=/config \
+  --entrypoints.web.address=:80 \
+  --entrypoints.websecure.address=:443 \
+  --providers.docker=true \
+  --providers.docker.exposedbydefault=false \
+  --providers.file.directory=/etc/traefik/dynamic
 
 [Service]
 Restart=always
